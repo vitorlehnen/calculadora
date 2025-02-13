@@ -1,0 +1,96 @@
+/* formatação padrão */
+*{
+    box-sizing: border-box !important;
+}
+/* formatação padrão */
+
+/* formatação container */
+.cont-calc{
+    border: 3px solid;
+    border-radius: 4px;
+    background-color: #404240;
+}
+h1{
+    text-align: center;
+}
+.cont-resultado{
+    padding: 0 .8em;
+    height: 9em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.cont-resultado-2{
+    height: 80%;
+}
+.cont-expre-superior, .cont-expre-inferior{
+    height: 50%;
+    font-family: monospace;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    letter-spacing: 1.5px;
+    overflow-x: hidden;
+}
+.cont-expre-inferior{
+    margin-top: -1.5px;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+    font-size: 1.8em;
+    padding-right: .5em;
+    background: linear-gradient(to top, #fff, rgb(216, 213, 213));
+}
+.cont-expre-superior{
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-size: 1.4em;
+    color: #000000ce;
+    padding-right: .3em;
+    background: linear-gradient(to bottom, #fff, rgb(216, 213, 213));
+}
+.cont-botoes-1{
+    height: 16em;
+    padding: .5em;
+}
+#cont-botoes{
+    display: grid;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(5, 35%);
+}
+#cont-botoes button{
+    cursor: pointer;
+    outline: 3px solid gray;
+    border: 0;
+    font-size: 1.3em;
+}
+#cont-botoes button:not(.botao-igual):hover{
+    background-color: #ffffffce;
+}
+#botao-zero{
+    grid-column: 1 / 3;
+}
+.botao-virgula{
+    font-size: 2em !important;
+    padding-bottom: .7em;
+    line-height: 0;
+}
+.font-size-small{
+    font-size: .8em;
+}
+.botao-igual{
+    background-color: #ff0000;
+    color: #fff;
+}
+.botao-igual:hover{
+    background-color: #ff000094;
+}
+/* formatação container */
+
+/* media queries */
+@media only screen and (min-width: 500px) {
+    .cont{
+        width: 450px;
+        margin: auto;
+    }
+}
+/* media queries */
