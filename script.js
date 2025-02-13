@@ -1,4 +1,4 @@
-const eventoDelegado = document.querySelector("#cont-botoes");
+const container = document.querySelector("#cont-botoes");
 /* Inicio criaçao HTML */
 const valores = ["\u2190", "CE", 'C', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '='];
 for (let index = 0; index < 19; index++) {
@@ -10,15 +10,15 @@ for (let index = 0; index < 19; index++) {
     if(/(?:CE|C|[^0-9\,])/.test(botao.innerHTML)) botao.classList.add("operadores");
     if(botao.innerHTML === '0') botao.setAttribute("id", "botao-zero");
     if(botao.innerHTML === "=") botao.setAttribute("class", "botao-igual");
-    eventoDelegado.appendChild(botao);
+    container.appendChild(botao);
 }
 /* fim criaçao HTML */
 const expre1 = document.querySelector("#sup");
 const expre2 = document.querySelector("#inf");                   
 const seta = document.querySelector("#seta").innerHTML;                     
 let controlador = false;
-eventoDelegado.addEventListener("click", delegado);
-function delegado(event){
+container.addEventListener("click", principal);
+function principal(event){
     let temp;
     if(expre1.innerHTML.length == 38 || expre2.innerHTML.length === 39){
         expre1.innerHTML = '';
@@ -84,10 +84,11 @@ function resultado(e1, e2){     // <-- Calcula a operação
         expre1.innerHTML = '';
         controlador = true;
     }
-    if(teste === "0 /0"){
+    // if(/0\s\/0,?/.test(teste)) alert("Resul indefined");
+    if(/0\s\/0,?/.test(teste)){
         expre2.innerHTML = "<small>Resultado indefinido</small>";
         divisaoPorZero(e1, e2);
-    }else if(/^.+?\s\/0$/.test(teste)){
+    }else if(/^.+?\s\/0,?$/.test(teste)){
         expre2.innerHTML = "<small>Impossivel dividir</small>";
         divisaoPorZero(e1, e2);
     }else if(teste.indexOf(',') != -1){
@@ -153,7 +154,7 @@ function botaoC(){
     expre1.innerHTML = '';
 }
 function mudaClasse(){  // Altera a font-size das expressões
-    if(mudaClasse.caller === delegado || mudaClasse.caller === resultado){
+    if(mudaClasse.caller === principal || mudaClasse.caller === resultado){
         expre2.classList.add("font-size-small");
     }else{
         expre2.classList.remove("font-size-small");
