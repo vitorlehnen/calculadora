@@ -15,7 +15,6 @@ for (let index = 0; index < valores.length; index++) {
 /* fim criaçao dos botoes */
 const expre1 = document.querySelector("#sup");
 const expre2 = document.querySelector("#inf");                   
-const seta = document.querySelector("#seta").innerHTML;                     
 let controlador = false;
 let valorInicial = true;
 container.addEventListener("click", principal);
@@ -29,10 +28,12 @@ function principal(event){
     let exp1 = expre1.innerHTML;
     let exp2 = expre2.innerHTML;
     if(exp2.length === 16) mudaClasse();
-    if(exp2.length === 18) limitaCaracteres(exp2, temp);
+    if(exp2.length === 18 && !["/", "*", "+", "-", "="].includes(temp)){
+        expre2.innerHTML = exp2.slice(0, -1);
+    }
     if(event.target.innerHTML.length <= 2){
         switch (temp) {
-            case seta:
+            case "\u2190":
                 botaoSeta(exp2);
                 break;
             case "CE":
@@ -48,20 +49,13 @@ function principal(event){
                 resultado(exp1, exp2);
                 break;
             default:
-                if(/[0-9]/.test(temp)){
-                    adValor(exp2, temp);
-                }else{
-                    adOperacao(exp2, temp);
-                }
+                (/[0-9]/.test(temp)) ? adValor(exp2, temp) : adOperacao(exp2, temp);
                 break;
         }
     }
 }
-function limitaCaracteres(e2, t){
-    if(!["/", "*", "-", "+"].includes(t)) return;
-}
 function adValor(e2, t){
-    if(controlador) mudaClasse()
+    if(controlador) mudaClasse();
     if(e2 === '0,'){
         expre2.innerHTML += t;
         controlador = false; 
@@ -82,7 +76,8 @@ function adOperacao(e2, t){
         expre1.innerHTML = `${e2} ${t}`;
     }
 }
-function resultado(e1, e2){     // <-- Calcula a operação
+function resultado(e1, e2){ 
+    if(!expre1.innerHTML) return    // <-- Calcula a operação
     let teste = `${e1}${e2}`;
     if(/\-\-/.test(teste)) teste = teste.replace(/(\-)()(\-[0-9]+)()/, "$1$2($3$4)");
     const divisaoPorZero = () => {
@@ -140,6 +135,12 @@ function botaoSeta(ex2){    // <-- Apaga 1 número por vez da expressão inferio
         controlador = false;
         return;
     }
+    if(ex2.length === 2){
+        if(ex2.indexOf("-") !== -1){
+            expre2.innerHTML = 0;
+            return;
+        }
+    }
     if(ex2.length > 1){
         if(controlador) controlador = false;
         ex2 = ex2.slice(0, ex2.length - 1);
@@ -158,9 +159,5 @@ function botaoC(){
     expre1.innerHTML = '';
 }
 function mudaClasse(){  // Altera a font-size das expressões
-    if(mudaClasse.caller === principal || mudaClasse.caller === resultado){
-        expre2.classList.add("font-size-small");
-    }else{
-        expre2.classList.remove("font-size-small");
-    }
+    (mudaClasse.caller === principal || mudaClasse.caller === resultado) ? expre2.classList.add("font-size-small") : expre2.classList.remove("font-size-small");
 }
