@@ -1,4 +1,4 @@
-const container = document.querySelector("#cont-botoes");
+(function(){const container = document.querySelector("#cont-botoes");
 /* Inicio criaçao dos botoes */
 const valores = ["\u2190", "CE", 'C', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '='];
 for (let index = 0; index < valores.length; index++) {
@@ -160,4 +160,4 @@ function botaoC(){
 }
 function mudaClasse(){  // Altera a font-size das expressões
     (mudaClasse.caller === principal || mudaClasse.caller === resultado) ? expre2.classList.add("font-size-small") : expre2.classList.remove("font-size-small");
-}
+}}());

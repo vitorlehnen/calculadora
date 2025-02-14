@@ -1,4 +1,7 @@
 /* formatação padrão */
+:root{
+    --eight-px: 8px;
+}
 *{
     box-sizing: border-box !important;
 }
@@ -22,6 +25,7 @@ h1{
 }
 .cont-resultado-2{
     height: 80%;
+    user-select: none;
 }
 .cont-expre-superior, .cont-expre-inferior{
     height: 50%;
@@ -34,15 +38,15 @@ h1{
 }
 .cont-expre-inferior{
     margin-top: -1.5px;
-    border-bottom-left-radius: 8px;
-    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: var(--eight-px);
+    border-bottom-right-radius: var(--eight-px);
     font-size: 1.8em;
     padding-right: .5em;
     background: linear-gradient(to top, #fff, rgb(216, 213, 213));
 }
 .cont-expre-superior{
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
+    border-top-left-radius: var(--eight-px);
+    border-top-right-radius: var(--eight-px);
     font-size: 1.4em;
     color: #000000ce;
     padding-right: .3em;
