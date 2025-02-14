@@ -1,7 +1,7 @@
 const container = document.querySelector("#cont-botoes");
-/* Inicio criaçao HTML */
+/* Inicio criaçao dos botoes */
 const valores = ["\u2190", "CE", 'C', '/', '7', '8', '9', '*', '4', '5', '6', '-', '1', '2', '3', '+', '0', ',', '='];
-for (let index = 0; index < 19; index++) {
+for (let index = 0; index < valores.length; index++) {
     const botao = document.createElement("button");
     botao.innerHTML = valores[index];
     botao.classList.add("botoes");
@@ -12,23 +12,25 @@ for (let index = 0; index < 19; index++) {
     if(botao.innerHTML === "=") botao.setAttribute("class", "botao-igual");
     container.appendChild(botao);
 }
-/* fim criaçao HTML */
+/* fim criaçao dos botoes */
 const expre1 = document.querySelector("#sup");
 const expre2 = document.querySelector("#inf");                   
 const seta = document.querySelector("#seta").innerHTML;                     
 let controlador = false;
+let valorInicial = true;
 container.addEventListener("click", principal);
 function principal(event){
-    let temp;
-    if(expre1.innerHTML.length == 38 || expre2.innerHTML.length === 39){
+    let temp = event.target.innerHTML;
+    if(valorInicial){
         expre1.innerHTML = '';
         expre2.innerHTML = 0;
+        valorInicial = false;
     }
     let exp1 = expre1.innerHTML;
     let exp2 = expre2.innerHTML;
     if(exp2.length === 16) mudaClasse();
+    if(exp2.length === 18) limitaCaracteres(exp2, temp);
     if(event.target.innerHTML.length <= 2){
-        temp = event.target.innerHTML;
         switch (temp) {
             case seta:
                 botaoSeta(exp2);
@@ -55,6 +57,9 @@ function principal(event){
         }
     }
 }
+function limitaCaracteres(e2, t){
+    if(!["/", "*", "-", "+"].includes(t)) return;
+}
 function adValor(e2, t){
     if(controlador) mudaClasse()
     if(e2 === '0,'){
@@ -80,11 +85,10 @@ function adOperacao(e2, t){
 function resultado(e1, e2){     // <-- Calcula a operação
     let teste = `${e1}${e2}`;
     if(/\-\-/.test(teste)) teste = teste.replace(/(\-)()(\-[0-9]+)()/, "$1$2($3$4)");
-    let divisaoPorZero = () => {
+    const divisaoPorZero = () => {
         expre1.innerHTML = '';
         controlador = true;
     }
-    // if(/0\s\/0,?/.test(teste)) alert("Resul indefined");
     if(/0\s\/0,?/.test(teste)){
         expre2.innerHTML = "<small>Resultado indefinido</small>";
         divisaoPorZero(e1, e2);
