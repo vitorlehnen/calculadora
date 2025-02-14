@@ -158,6 +158,6 @@ function botaoC(){
     expre2.innerHTML = 0;
     expre1.innerHTML = '';
 }
-function mudaClasse(){  // Altera a font-size das expressões
+function mudaClasse(){  
     (mudaClasse.caller === principal || mudaClasse.caller === resultado) ? expre2.classList.add("font-size-small") : expre2.classList.remove("font-size-small");
 }}());
