@@ -36,8 +36,8 @@ function principal(event){
     }
     let exp1 = expre1.innerHTML;
     let exp2 = expre2.innerHTML;
-    if(exp2.length === 16) mudaClasse();
-    if(exp2.length === 18 && !["/", "*", "+", "-", "="].includes(temp)){
+    if(exp2.length === 11) mudaClasse();
+    if(exp2.length === 14 && !["/", "*", "+", "-", "="].includes(temp)){
         expre2.innerHTML = exp2.slice(0, -1);
     }
     if(event.target.innerHTML.length <= 2){
@@ -104,7 +104,7 @@ function resultado(e1, e2){
     }else{
         mudaControl(true);
         let temp = String(eval(teste));
-        if(temp.length >= 16) mudaClasse();
+        if(temp.length >= 11) mudaClasse();
         if(temp.indexOf('.') != -1){
             temp = temp.replace('.', ',');
         }
@@ -140,6 +140,7 @@ function verifVirgulas(e2){
     }
 }
 function botaoSeta(ex2){    // <-- Apaga 1 número por vez da expressão inferior da calculadora
+    if(ex2.length === 11) mudaClasse();
     if(/[a-z]/i.test(ex2) && controlador){
         mudaExpre2();
         mudaControl(false);
