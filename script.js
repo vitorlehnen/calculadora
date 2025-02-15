@@ -18,6 +18,9 @@ const expre2 = document.querySelector("#inf");
 let controlador = false;
 let valorInicial = true;
 container.addEventListener("click", principal);
+function mudaControl(val){
+    controlador = val;
+}
 function mudaExpre1(val = ''){
     expre1.innerHTML = val;
 }
@@ -64,10 +67,12 @@ function adValor(e2, t){
     if(controlador) mudaClasse();
     if(e2 === '0,'){
         expre2.innerHTML += t;
-        controlador = false; 
+        // controlador = false;
+        mudaControl(false); 
     }else if(e2 === '0' || controlador){
         mudaExpre2(t);
-        controlador = false;
+        // controlador = false;
+        mudaControl(false);
     }else{
         expre2.innerHTML += t;
     }
@@ -78,7 +83,8 @@ function adOperacao(e2, t){
         mudaExpre2(e2);
     }
     if(!(/[a-z]/.test(e2))){
-        controlador = true;
+        // controlador = true;
+        mudaControl(true);
         mudaExpre1(`${e2} ${t}`);
     }
 }
@@ -88,7 +94,8 @@ function resultado(e1, e2){
     if(/\-\-/.test(teste)) teste = teste.replace(/(\-)()(\-[0-9]+)()/, "$1$2($3$4)");
     const divisaoPorZero = () => {
         mudaExpre1();
-        controlador = true;
+        // controlador = true;
+        mudaControl(true);
     }
     if(/0\s\/0,?/.test(teste)){
         mudaExpre2("<small>Resultado indefinido</small>");
@@ -99,7 +106,8 @@ function resultado(e1, e2){
     }else if(teste.indexOf(',') != -1){
         trocaVirgulas(e1, e2);
     }else{
-        controlador = true;
+        // controlador = true;
+        mudaControl(true);
         let temp = String(eval(teste));
         if(temp.length >= 16) mudaClasse();
         if(temp.indexOf('.') != -1){
@@ -115,7 +123,8 @@ function trocaVirgulas(ex1, ex2){   // <-- Troca as virgulas por pontos para rea
     let temp = `${ex1}${ex2}`.replace(/,/g, '.');
     temp = String(eval(temp));
     temp = temp.replace(/\./g, ',');
-    controlador = true;
+    // controlador = true;
+    mudaControl(true);
     mudaExpre2(temp);
     mudaExpre1();
 }
@@ -129,7 +138,8 @@ function verifRepetVirgulas(ex2){ // <-- verifica se foi digitado apenas 1 virgu
 function verifVirgulas(e2){
     if(controlador && verifRepetVirgulas(e2) <= 1){
         mudaExpre2("0,");
-        controlador = false;
+        // controlador = false;
+        mudaControl(false);
     }else if(verifRepetVirgulas(e2) < 1){
         expre2.innerHTML += ',';
     }else if(controlador){
@@ -139,7 +149,8 @@ function verifVirgulas(e2){
 function botaoSeta(ex2){    // <-- Apaga 1 número por vez da expressão inferior da calculadora
     if(/[a-z]/i.test(ex2) && controlador){
         mudaExpre2();
-        controlador = false;
+        // controlador = false;
+        mudaControl(false);
         return;
     }
     if(ex2.length === 2){
@@ -149,7 +160,7 @@ function botaoSeta(ex2){    // <-- Apaga 1 número por vez da expressão inferio
         }
     }
     if(ex2.length > 1){
-        if(controlador) controlador = false;
+        if(controlador) mudaControl(false);
         ex2 = ex2.slice(0, ex2.length - 1);
         mudaExpre2(ex2);
     }else{
