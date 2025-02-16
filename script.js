@@ -108,11 +108,12 @@ function resultado(e1, e2){
         if(temp.indexOf('.') != -1){
             temp = temp.replace('.', ',');
         }
-        temp = temp.slice(0, 19);
+        // temp = temp.slice(0, 19);
         mudaExpre2(temp);
         mudaExpre1();
 
     }
+    if(expre2.innerHTML.length >= 15) expre2.innerHTML = expre2.innerHTML.slice(0, 15);
 }
 function trocaVirgulas(ex1, ex2){   // <-- Troca as virgulas por pontos para realizar as operações
     let temp = `${ex1}${ex2}`.replace(/,/g, '.');
