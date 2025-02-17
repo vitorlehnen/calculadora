@@ -113,7 +113,7 @@ function resultado(e1, e2){
         mudaExpre1();
 
     }
-    if(expre2.innerHTML.length >= 15 && !/[a-z]/.test(expre2.innerHTML)) expre2.innerHTML = expre2.innerHTML.slice(0, 15);
+    if(expre2.innerHTML.length >= 15 && !/[a-z]e/.test(expre2.innerHTML)) expre2.innerHTML = expre2.innerHTML.slice(0, 15);
 }
 function trocaVirgulas(ex1, ex2){   // <-- Troca as virgulas por pontos para realizar as operações
     let temp = `${ex1}${ex2}`.replace(/,/g, '.');
