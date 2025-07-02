@@ -5,13 +5,18 @@
   <main>
     <section>
       <h2>Descrição:</h2>
-      <p>Uma calculadora basica que realiza as quatro principais operações matematicas</p>
+      <p>Este é um projeto simples de calculadora básica desenvolvido com HTML, CSS e JavaScript. A calculadora permite realizar operações matemáticas fundamentais: adição, subtração, multiplicação e divisão. É ideal para quem está iniciando no desenvolvimento web e deseja praticar a integração entre as tecnologias front-end.</p>
     </section>
     <section>
       <h2>Funcionalidades:</h2>
       <ul>
         <li>Calcula as quatro operações matematicas;</li>
         <li>Controle total para remover as expressões usando as funções "C", "CE" e "&LeftArrow;";</li>
+        <li>Interface amigável e responsiva.</li>
+        <li>Suporte as quatro operações matemáticas básicas</li>
+        <ul>
+          <li>Multiplicação ( * )</li>
+        </ul>
       </ul>
     </section>
     <section>
