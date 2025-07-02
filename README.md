@@ -10,8 +10,6 @@
     <section>
       <h2>Funcionalidades:</h2>
       <ul>
-        <li>Limpeza da tela com as funções "C", "CE" e "&LeftArrow;";</li>
-        <li>Interface amigável e responsiva.</li>
         <li>Suporte as quatro operações matemáticas básicas</li>
         <ul>
           <li>Multiplicação ( * )</li>
@@ -19,6 +17,8 @@
           <li>Subtração ( - )</li>
           <li>Adição ( + )</li>
         </ul>
+        <li>Limpeza da tela com as funções "C", "CE" e "&LeftArrow;";</li>
+        <li>Interface amigável e responsiva.</li>
       </ul>
     </section>
     <section>
