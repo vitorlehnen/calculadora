@@ -10,7 +10,6 @@
     <section>
       <h2>Funcionalidades:</h2>
       <ul>
-        <li>Calcula as quatro operações matematicas;</li>
         <li>Limpeza da tela com as funções "C", "CE" e "&LeftArrow;";</li>
         <li>Interface amigável e responsiva.</li>
         <li>Suporte as quatro operações matemáticas básicas</li>
